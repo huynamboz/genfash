@@ -12,7 +12,7 @@ const Text = React.forwardRef<RNText, TextProps>(
     return (
       <RNText
         ref={ref}
-        className={`font-default flex-wrap ${className || ''}`}
+        className={`font-default text-white flex-wrap ${className || ''}`}
         style={style}
         {...props}
       >

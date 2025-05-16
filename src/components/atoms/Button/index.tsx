@@ -21,27 +21,22 @@ interface ButtonProps {
 
 const buttonVariants = {
   primary: {
-    base: 'h-[48] flex items-center rounded px-4 py-3',
+    base: 'flex items-center rounded px-4 py-3',
     text: 'font-medium text-white',
-    defaultColor: 'bg-primary-11',
+    defaultColor: 'bg-primary',
   },
   text: {
-    base: 'h-[48] flex items-center rounded bg-transparent px-4 py-3',
+    base: 'flex items-center rounded bg-transparent px-4 py-3',
     text: 'font-medium text-gray-800',
     defaultColor: '',
   },
-  link: {
-    base: 'h-[48] flex items-center rounded bg-transparent',
-    text: 'font-medium text-blue-500 underline',
-    defaultColor: '',
-  },
   secondary: {
-    base: 'h-[48] flex items-center rounded px-4 py-3',
-    text: 'font-medium text-primary-11-alpha',
-    defaultColor: 'bg-primary-3-alpha',
+    base: 'flex items-center rounded px-4 py-3 border border-[#141026]',
+    text: 'font-medium text-white',
+    defaultColor: 'bg-[#141026]',
   },
   destructive: {
-    base: 'h-[48] flex items-center rounded px-4 py-3',
+    base: 'flex items-center rounded px-4 py-3',
     text: 'font-medium text-white',
     defaultColor: 'bg-error',
   },
@@ -76,25 +71,27 @@ const Button = ({
   const textStyle = [variantStyle.text, textFont].join(' ');
 
   return (
-    <Pressable onPress={onPress} disabled={disabled}>
-      <View className={`flex-row justify-center items-center ${contentClassName} ${buttonStyle}`}>
-        {icon && (
-          <View>
-            {React.isValidElement(icon) ? (
-              icon
-            ) : (
-              <Image source={icon as ImageSourcePropType} className={`w-6 h-6 ${iconClassName}`} />
-            )}
-          </View>
-        )}
-        {iconLeftName && (
-          <SVGIcon name={iconLeftName} size={iconSize} className={`fill-white ${iconClassName}`} />
-        )}
-        {text && <Text className={`mx-2 ${textStyle} ${classNameText}`}>{text}</Text>}
-        {iconRightName && (
-          <SVGIcon name={iconRightName} size={iconSize} className={`fill-white ${iconClassName}`} />
-        )}
-      </View>
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      className={`flex-row justify-center items-center ${contentClassName} ${buttonStyle}`}
+    >
+      {icon && (
+        <View>
+          {React.isValidElement(icon) ? (
+            icon
+          ) : (
+            <Image source={icon as ImageSourcePropType} className={`w-6 h-6 ${iconClassName}`} />
+          )}
+        </View>
+      )}
+      {iconLeftName && (
+        <SVGIcon name={iconLeftName} size={iconSize} className={`fill-white ${iconClassName}`} />
+      )}
+      {text && <Text className={`mx-2 ${textStyle} ${classNameText}`}>{text}</Text>}
+      {iconRightName && (
+        <SVGIcon name={iconRightName} size={iconSize} className={`fill-white ${iconClassName}`} />
+      )}
     </Pressable>
   );
 };

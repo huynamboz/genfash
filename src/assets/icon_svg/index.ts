@@ -35,7 +35,15 @@ export { default as hugeicons_image_crop } from '@/assets/icon_svg/hugeicons/ima
 export { default as hugeicons_text_creation } from '@/assets/icon_svg/hugeicons/text-creation.svg';
 
 // solar
+export { default as solar_alt_arrow_left_linear } from '@/assets/icon_svg/solar/alt-arrow-left-linear.svg';
 export { default as solar_crop_minimalistic_linear } from '@/assets/icon_svg/solar/crop-minimalistic-linear.svg';
+export { default as solar_download_minimalistic_linear } from '@/assets/icon_svg/solar/download-minimalistic-linear.svg';
+export { default as solar_folder_2_linear } from '@/assets/icon_svg/solar/folder-2-linear.svg';
+export { default as solar_home_2_outline } from '@/assets/icon_svg/solar/home-2-outline.svg';
+export { default as solar_list_linear } from '@/assets/icon_svg/solar/list-linear.svg';
+export { default as solar_magic_stick_3_bold } from '@/assets/icon_svg/solar/magic-stick-3-bold.svg';
+export { default as solar_share_linear } from '@/assets/icon_svg/solar/share-linear.svg';
+export { default as solar_user_linear } from '@/assets/icon_svg/solar/user-linear.svg';
 
 // radix-icons
 export { default as radix_mixer_horizontal } from '@/assets/icon_svg/radix-icons/mixer-horizontal.svg';
