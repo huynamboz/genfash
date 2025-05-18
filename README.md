@@ -1,40 +1,62 @@
-# 📸 Lutdee 
+# 📸 Genfash
 
-Turn every moment into a masterpiece with cinematic filters, unique colors, and creative editing tools!  
+Transform your fashion ideas into stunning visuals with **Genfash**, an AI-powered app that generates unique, high-quality fashion images tailored to your style!
 
 ## ✨ Features
-- 🎨 Professional film color filters (LUTs, vintage, cinematic, etc.)  
-- 🖋️ Add text, stickers, and custom items to photos  
-- 🎞️ Adjust colors: brightness, contrast, saturation, etc.  
-- 🔥 Special effects to enhance your images  
-- 💾 Export high-quality images and share easily  
+- 🧠 AI-generated fashion images based on your inputs
+- 🎨 Customize designs with vibrant colors, patterns, and textures
+- 🖌️ Intuitive editing tools for fine-tuning your creations
+- 🔥 Apply cinematic filters and effects for a polished look
+- 💾 Export and share high-resolution images effortlessly
+
+## 📷 Screenshots
+<table align="center">
+  <tr>
+    <td align="center" width="25%">
+      <img src="docs/image4.png" alt="Preview" title="Desktop Preview">
+    </td>
+    <td align="center" width="25%">
+      <img src="docs/image3.png" alt="Preview" title="Mobile Preview">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="25%">
+      <img src="docs/image2.png" alt="Preview" title="Desktop Preview">
+    </td>
+    <td align="center" width="25%">
+      <img src="docs/image.png" alt="Preview" title="Mobile Preview">
+    </td>
+  </tr>
+</table>
 
 ## 🚀 Installation
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/lutdee.git
-cd lutdee
+# Clone the repository
+git clone https://github.com/huynamboz/genfash.git
+cd genfash
 
 # Install dependencies
 yarn install # or npm install
 
-# Run app
+# Run the app
 yarn start # or npm start
 ```
 
 ## 🛠️ Tech Stack
-- React Native
-- Expo (or React Native CLI)
-- React Native Vision Camera (photo capture)
-- React Native Reanimated (animations)
-- Gl-react / react-native-gl-image-filters (color filters)
+- **React Native** (CLI, no Expo)
+- **React Native Vision Camera** (for photo capture and processing)
+- **React Native Reanimated** (smooth animations)
+
+- **AI Integration** (custom AI model for fashion image generation)
 
 ## 🤝 Contributing
-Contributions and ideas are always welcome! Feel free to create a pull request or open an issue if you have suggestions.  
+We love contributions! Whether it's a bug fix, feature idea, or feedback, feel free to:
+1. Open an issue to discuss your ideas
+2. Submit a pull request with your changes
 
 ## 📜 License
-MIT License © 2024 huynamboz
+MIT License © 2025 huynamboz
 
----  
-💡 *Download now and create stunning cinematic photos!*
+---
 
+💡 *Download Genfash now and bring your fashion vision to life with AI!*
