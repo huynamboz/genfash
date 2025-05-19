@@ -1,9 +1,10 @@
 import { BottomTab } from '@/components/atoms/BottomTab';
 import { SVGIcon } from '@/components/atoms/Icon';
 import Text from '@/components/atoms/Text';
+import { useCollectionStore } from '@/stores/collections';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,6 +19,11 @@ const HomeScreen = () => {
     'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://plus.unsplash.com/premium_photo-1695575576052-7c271876b075?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   ];
+  const { fetchCollections } = useCollectionStore();
+
+  useEffect(() => {
+    fetchCollections();
+  }, []);
 
   // Header component cho FlatList
   const renderHeader = () => (
