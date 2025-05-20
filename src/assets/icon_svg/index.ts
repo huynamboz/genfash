@@ -20,7 +20,6 @@ export { default as plus_02 } from '@/assets/icon_svg/plus_02.svg';
 export { default as share } from '@/assets/icon_svg/share.svg';
 export { default as shield_check_02 } from '@/assets/icon_svg/shield_check_02.svg';
 export { default as sos } from '@/assets/icon_svg/sos.svg';
-export * from '@/assets/icon_svg/spinner';
 export { default as up_arrow_1 } from '@/assets/icon_svg/up_arrow_1.svg';
 export { default as up_arrow_2 } from '@/assets/icon_svg/up_arrow_2.svg';
 export { default as x_01 } from '@/assets/icon_svg/x_01.svg';

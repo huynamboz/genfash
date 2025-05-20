@@ -53,10 +53,15 @@ const CreateScreen = () => {
   async function handleGenerate() {
     setIsLoading(true);
     try {
-      const { job_id } = await GenerateImageApi(prompt || 'a street wear fashion style');
+      const { job_id } = await GenerateImageApi(
+        prompt + ' ' + selectedStyle || 'a street wear fashion style',
+      );
       console.log('job_id', job_id);
       navigation.navigate('ResultGeneratedScreen', {
         job_id,
+        isPublic: isShareResult,
+        style: selectedStyle,
+        description: prompt,
       });
     } catch (error) {
       console.log('error', error);

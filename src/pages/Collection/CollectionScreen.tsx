@@ -1,44 +1,34 @@
 import { Button } from '@/components/atoms/Button';
 import { SVGIcon } from '@/components/atoms/Icon';
+import { getMyCollectionsApi } from '@/services/collections';
+import { Collection } from '@/types/collection';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CollectionScreen = () => {
   const navigation = useNavigation();
-  const collections = [
-    {
-      id: 1,
-      type: '90s',
-      images: [
-        'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2124&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      ],
-    },
-    {
-      id: 2,
-      type: '2000s',
-      images: [
-        'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      ],
-    },
-    {
-      id: 3,
-      type: '2020s',
-      images: [
-        'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        'https://plus.unsplash.com/premium_photo-1695575576052-7c271876b075?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      ],
-    },
-  ];
+  const [collections, setCollections] = useState<Collection[]>([]);
 
-  const renderItem = (item: any) => {
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getMyCollectionsApi();
+        if (data) {
+          setCollections(data);
+        }
+      } catch (error) {
+        console.log('Error fetching collections:', error);
+      }
+    })();
+  }, []);
+
+  const renderItem = (item: Collection) => {
     return (
       <ImageBackground
-        source={{ uri: item.images[0] }}
+        source={{ uri: item.image }}
         className="w-[48%] mb-4 h-[200px] rounded-lg overflow-hidden relative"
         imageStyle={{ borderRadius: 10 }}
         resizeMode="cover"
@@ -49,12 +39,12 @@ const CollectionScreen = () => {
         />
         <View className="p-4 flex-1 flex-col justify-end absolute top-0 left-0 size-full">
           <Text className="text-white" numberOfLines={2}>
-            A summer streetwear fashion style in the 90s
+            {item.description}
           </Text>
           <View className="flex-row items-center gap-2 justify-between">
             <Button
               onPress={() => {}}
-              className="mt-2 flex-auto rounded-lg px-4 h-8 py-0"
+              className="mt-2 flex-auto rounded-lg px-4 h-8 !py-0"
               classNameText="text-xs"
               text="View"
             />

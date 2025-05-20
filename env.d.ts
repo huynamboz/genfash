@@ -1,7 +1,6 @@
 declare module '@env' {
-  export const WEB_CLIENT_ID: string;
-  export const FACEBOOK_APP_ID: string;
-  export const MAPBOX_ACCESS_TOKEN: string;
+  export const SUPABASE_URL: string;
+  export const SUPABASE_ANON_KEY: string;
 }
 
 declare module '@/assets/icon_svg/*.svg' {

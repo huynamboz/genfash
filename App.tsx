@@ -1,20 +1,35 @@
 // @@iconify-code-gen
-import { ConfirmDialogProvider } from '@/components/atoms/ConfirmDialog';
+import { supabase } from '@/libs/supabase';
 import AppNavigation from '@/navigation/AppNavigation';
+import { useAuthStore } from '@/stores/auth';
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import './global.css';
 
-// Settings.setAppID(FACEBOOK_APP_ID);
-
 const App = () => {
+  const { setSession, setUser } = useAuthStore();
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) {
+        setUser(session.user);
+      }
+    });
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      if (session) {
+        setUser(session.user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
+
   return (
     <GestureHandlerRootView>
       <NavigationContainer>
-        <ConfirmDialogProvider>
-          <AppNavigation />
-        </ConfirmDialogProvider>
+        <AppNavigation />
       </NavigationContainer>
     </GestureHandlerRootView>
   );

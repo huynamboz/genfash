@@ -2,17 +2,18 @@ import { Button } from '@/components/atoms/Button';
 import { SVGIcon } from '@/components/atoms/Icon';
 import { Loading } from '@/components/atoms/Loading/Loading';
 import Text from '@/components/atoms/Text';
+import { addCollectionApi } from '@/services/collections';
 import { GenerateImageApi, GetResultImageApi } from '@/services/generate';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ResultGeneratedScreen = () => {
   const navigation = useNavigation<HomeNavigationProp>();
   const route = useRoute();
-  const { job_id } = route.params as { job_id: string };
+  const { job_id, isPublic, style, description } = route.params as { job_id: string };
   const [jobId, setJobId] = React.useState<string | null>(job_id);
   console.log('job_id', job_id);
 
@@ -24,7 +25,7 @@ const ResultGeneratedScreen = () => {
     const timeStarted = Date.now();
     intervalRef.current = setInterval(() => {
       GetResultImageApi(job_id)
-        .then((res) => {
+        .then(async (res) => {
           console.log('res', res);
           if (res?.image_url) {
             setImageUrls(res.image_url);
@@ -53,6 +54,25 @@ const ResultGeneratedScreen = () => {
     };
   }, [jobId]);
 
+  useEffect(() => {
+    if (imageUrls.length > 0) {
+      const addCollection = async (url: string) => {
+        try {
+          await addCollectionApi({
+            image: url,
+            description,
+            style: style,
+            is_public: isPublic,
+          });
+        } catch (error) {
+          console.log('Error adding collection:', error);
+        }
+      };
+      imageUrls.forEach((url) => {
+        addCollection(url);
+      });
+    }
+  }, [imageUrls]);
   async function handleReGenerate() {
     const { job_id } = await GenerateImageApi('a street wear fashion style');
     setJobId(job_id);
@@ -72,6 +92,12 @@ const ResultGeneratedScreen = () => {
           <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
         </TouchableOpacity>
         <Text className="text-xl text-white">Generate Image</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('HomeScreen')}
+          className="absolute right-0 top-0 size-12 flex-row justify-center items-center bg-[#171327"
+        >
+          <SVGIcon name="solar_home_2_outline" size={18} className="fill-white" />
+        </TouchableOpacity>
       </View>
 
       <View className="flex-auto px-4">
