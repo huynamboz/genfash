@@ -1,6 +1,7 @@
 import React from 'react';
-import { Image, ImageSourcePropType, Pressable, Text, View } from 'react-native';
+import { Image, ImageSourcePropType, Pressable, View } from 'react-native';
 import { SVGIcon, SVGIconType } from '../Icon';
+import Text from '../Text';
 
 interface ButtonProps {
   icon?: ImageSourcePropType;

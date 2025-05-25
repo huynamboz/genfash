@@ -16,6 +16,11 @@ export type HomeStackParamList = {
   };
   CollectionScreen: undefined;
   SignInScreen: undefined;
+  ProfileScreen: undefined;
+  SignUpScreen: undefined;
+  PinVerificationScreen: {
+    email: string;
+  };
 };
 
 // Type for navigation of each Stack
