@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/stores/auth';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
@@ -23,6 +24,7 @@ const BottomTab = () => {
     },
   ];
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const { session } = useAuthStore();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -40,6 +42,10 @@ const BottomTab = () => {
         <TouchableOpacity
           key={tab.id}
           onPress={() => {
+            if (!session) {
+              navigation.navigate('SignInScreen');
+              return;
+            }
             setSelectedTab(tab);
             navigation.navigate(tab.routeName as any);
           }}

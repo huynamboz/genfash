@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const ResultGeneratedScreen = () => {
   const navigation = useNavigation<HomeNavigationProp>();
   const route = useRoute();
-  const { job_id, isPublic, style, description } = route.params as { job_id: string };
+  const { job_id, isPublic, style, description } = (route.params as any) || {};
   const [jobId, setJobId] = React.useState<string | null>(job_id);
   console.log('job_id', job_id);
 
@@ -91,7 +91,7 @@ const ResultGeneratedScreen = () => {
         >
           <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
         </TouchableOpacity>
-        <Text className="text-xl text-white">Generate Image</Text>
+        <Text className="text-xl ">Generate Image</Text>
         <TouchableOpacity
           onPress={() => navigation.navigate('HomeScreen')}
           className="absolute right-0 top-0 size-12 flex-row justify-center items-center bg-[#171327"
@@ -102,7 +102,7 @@ const ResultGeneratedScreen = () => {
 
       <View className="flex-auto px-4">
         {/* Content */}
-        <View className="bg-gray-800 flex-auto rounded-lg">
+        <View className="flex-auto bg-gray-800 rounded-lg">
           {imageUrls[currentUrlIndex] ? (
             <Image
               source={{ uri: imageUrls[currentUrlIndex] }}
@@ -110,7 +110,7 @@ const ResultGeneratedScreen = () => {
               resizeMode="contain"
             />
           ) : (
-            <View className="w-full h-full flex-row justify-center items-center">
+            <View className="flex-row items-center justify-center w-full h-full">
               <Loading size={100} />
             </View>
           )}
@@ -136,7 +136,7 @@ const ResultGeneratedScreen = () => {
                     resizeMode="cover"
                   />
                 ) : (
-                  <View className="w-full h-full flex-row justify-center items-center">
+                  <View className="flex-row items-center justify-center w-full h-full">
                     <Loading size={50} />
                   </View>
                 )}
@@ -160,7 +160,7 @@ const ResultGeneratedScreen = () => {
             <Button
               text="Share"
               variant="secondary"
-              className="w-full border-gray-800 border rounded-full"
+              className="w-full border border-gray-800 rounded-full"
               onPress={() => navigation.navigate('CreateScreen')}
               iconLeftName="solar_share_linear"
               iconClassName="!stroke-white !fill-transparent"
@@ -170,7 +170,7 @@ const ResultGeneratedScreen = () => {
             <Button
               text="Download"
               variant="primary"
-              className="w-full border-primary border rounded-full"
+              className="w-full border rounded-full border-primary"
               onPress={() => navigation.navigate('CreateScreen')}
               iconLeftName="solar_download_minimalistic_linear"
               iconClassName="!stroke-white !fill-transparent"
@@ -178,7 +178,7 @@ const ResultGeneratedScreen = () => {
           </View>
         </View>
 
-        <Text className="text-white text-center text-xs mt-5">
+        <Text className="mt-5 text-xs text-center ">
           Used 1 credits to generate this image.{' '}
           <Text className="text-primary">Get more credits</Text>
         </Text>

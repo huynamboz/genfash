@@ -37,11 +37,11 @@ const CollectionScreen = () => {
           colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.8)']}
           style={{ borderRadius: 10, flex: 1 }}
         />
-        <View className="p-4 flex-1 flex-col justify-end absolute top-0 left-0 size-full">
-          <Text className="text-white" numberOfLines={2}>
+        <View className="absolute top-0 left-0 flex-col justify-end flex-1 p-4 size-full">
+          <Text className="" numberOfLines={2}>
             {item.description}
           </Text>
-          <View className="flex-row items-center gap-2 justify-between">
+          <View className="flex-row items-center justify-between gap-2">
             <Button
               onPress={() => {}}
               className="mt-2 flex-auto rounded-lg px-4 h-8 !py-0"
@@ -71,7 +71,7 @@ const CollectionScreen = () => {
         >
           <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
         </TouchableOpacity>
-        <Text className="text-xl font-medium text-white">My Collection</Text>
+        <Text className="text-xl font-medium ">My Collection</Text>
       </View>
 
       {/* List */}

@@ -56,7 +56,7 @@ const HomeScreen = () => {
           <SVGIcon name="solar_list_linear" className="stroke-white" />
         </TouchableOpacity>
         <SVGIcon name="solar_magic_stick_3_bold" className="fill-white" />
-        <Text className="text-xl font-semibold text-white">GENFASH</Text>
+        <Text className="text-xl font-semibold ">GENFASH</Text>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           className="absolute -right-0 top-2 py-2 px-3 rounded-full flex-row gap-1 bg-gray-900 justify-center items-center bg-[#171327"
@@ -67,7 +67,7 @@ const HomeScreen = () => {
       </View>
 
       {/* Content */}
-      <Text className="text-white text-3xl mt-8 max-w-[80%]">
+      <Text className=" text-3xl mt-8 max-w-[80%]">
         Generate your own fashion in <Text className="font-bold">Click</Text>
       </Text>
       <TouchableOpacity onPress={() => handleCreate()} className="h-[130px] mt-5">
@@ -77,13 +77,13 @@ const HomeScreen = () => {
           colors={['#8634f9', '#5020d2', '#9b23a8', '#dc8d3c']}
           style={styles.linearGradient}
         />
-        <View className="absolute w-full h-full top-0 left-0 gap-1 flex-row justify-center items-center">
+        <View className="absolute top-0 left-0 flex-row items-center justify-center w-full h-full gap-1">
           <SVGIcon name="solar_magic_stick_3_bold" className="fill-white" />
-          <Text className="text-lg font-medium text-white">Generate fashion style</Text>
+          <Text className="text-lg font-medium ">Generate fashion style</Text>
         </View>
       </TouchableOpacity>
 
-      <Text className="text-white text-xl mt-6 max-w-[80%]">
+      <Text className=" text-xl mt-6 max-w-[80%]">
         Explore this week&apos;s trending fashion styles.
       </Text>
 
@@ -94,7 +94,7 @@ const HomeScreen = () => {
             key={index}
             className={`bg-[#0c081c] h-[40px] rounded-full px-4 flex-row items-center ${currentTab === item ? 'bg-[#8634f9]' : ''}`}
           >
-            <Text className="text-white text-lg font-medium">{item}</Text>
+            <Text className="text-lg font-medium ">{item}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -120,8 +120,8 @@ const HomeScreen = () => {
                 colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.8)']}
                 style={{ borderRadius: 8, flex: 1 }}
               />
-              <View className="p-4 flex-1 flex-row justify-end items-end absolute top-0 left-0 size-full">
-                {/* <Text className="text-white flex-auto" numberOfLines={2}>
+              <View className="absolute top-0 left-0 flex-row items-end justify-end flex-1 p-4 size-full">
+                {/* <Text className="flex-auto " numberOfLines={2}>
                   {item.description}
                 </Text> */}
                 <TouchableOpacity

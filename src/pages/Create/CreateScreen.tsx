@@ -73,7 +73,7 @@ const CreateScreen = () => {
   return (
     <SafeAreaView className="flex-1 px-4">
       <FullScreenLoading isVisible={isLoading}>
-        <Text className="text-white text-lg font-medium">Generating your fashion style...</Text>
+        <Text className="text-lg font-medium ">Generating your fashion style...</Text>
       </FullScreenLoading>
       {/* Header */}
       <View className="flex-row items-center justify-center gap-1 py-2">
@@ -83,11 +83,11 @@ const CreateScreen = () => {
         >
           <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
         </TouchableOpacity>
-        <Text className="text-xl font-medium text-white">Prompt</Text>
+        <Text className="text-xl font-medium ">Prompt</Text>
       </View>
 
       {/* Content */}
-      <Text className="text-white mt-5 max-w-[80%]">
+      <Text className=" mt-5 max-w-[80%]">
         Describe your <Text className="font-bold">fashion style</Text>
       </Text>
 
@@ -97,7 +97,7 @@ const CreateScreen = () => {
           multiline
           numberOfLines={4}
           onChangeText={setPrompt}
-          className="text-white bg-transparent"
+          className=" bg-transparent"
           placeholder="Describe your fashion style"
           placeholderClassName="text-[#8f36ff]"
           placeholderTextColor="#82709b"
@@ -114,32 +114,32 @@ const CreateScreen = () => {
       </View>
 
       {/* Choose style */}
-      <Text className="text-white mt-5 max-w-[80%]">Choose your style</Text>
+      <Text className=" mt-5 max-w-[80%]">Choose your style</Text>
       <View className="flex-row gap-2 mt-2">
         {fashionStyles.map((item, index) => (
           <TouchableOpacity
             onPress={() => setSelectedStyle(item.name)}
             key={index}
-            className="flex-1 gap-2 flex-col items-center"
+            className="flex-col items-center flex-1 gap-2"
           >
             <View
               className={`w-full h-[120px] bg-[#141026] border-[2px] flex-row justify-center items-center rounded-xl ${selectedStyle === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
             >
               <Image source={{ uri: item.url }} className="w-full h-full rounded-xl" />
             </View>
-            <Text className="text-white text-xs font-medium">{item.name}</Text>
+            <Text className="text-xs font-medium ">{item.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       {/* Choose shape */}
-      <Text className="text-white mt-5 max-w-[80%]">Choose your shape</Text>
+      <Text className=" mt-5 max-w-[80%]">Choose your shape</Text>
       <View className="flex-row gap-2 mt-2">
         {shape.map((item, index) => (
           <TouchableOpacity
             onPress={() => setSelectedShape(item.name)}
             key={index}
-            className="flex-1 gap-2 flex-col items-center"
+            className="flex-col items-center flex-1 gap-2"
           >
             <View
               className={`w-full h-[80px] bg-[#141026] border flex-row justify-center items-center rounded-xl ${selectedShape === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
@@ -148,14 +148,14 @@ const CreateScreen = () => {
                 className={`${item.className} ${item.name === selectedShape ? '!border-white' : ''}`}
               ></View>
             </View>
-            <Text className="text-white text-xs font-medium">{item.name}</Text>
+            <Text className="text-xs font-medium ">{item.name}</Text>
           </TouchableOpacity>
         ))}
       </View>
 
       {/* Share your generated style */}
       <View className="flex-row items-center justify-between mt-5 bg-[#141026] px-4 py-3 rounded-xl">
-        <Text className="text-white text-xs">Share your result!</Text>
+        <Text className="text-xs ">Share your result!</Text>
         <Switch
           onValueChange={(value) => {
             setIsShareResult(value);
@@ -165,12 +165,12 @@ const CreateScreen = () => {
       </View>
       <Button
         onPress={() => handleGenerate()}
-        className="rounded-full mt-8"
+        className="mt-8 rounded-full"
         iconLeftName="solar_magic_stick_3_bold"
         text="Generate fashion style"
       />
       <View>
-        <Text className="text-white text-center text-xs mt-2">
+        <Text className="mt-2 text-xs text-center ">
           Use 1 of 50 credit <Text className="text-[#8f36ff]">Terms of Service</Text>
         </Text>
       </View>

@@ -22,7 +22,7 @@ interface ButtonProps {
 const buttonVariants = {
   primary: {
     base: 'flex items-center rounded px-4 py-3',
-    text: 'font-medium text-white',
+    text: 'font-medium ',
     defaultColor: 'bg-primary',
   },
   text: {
@@ -32,12 +32,12 @@ const buttonVariants = {
   },
   secondary: {
     base: 'flex items-center rounded px-4 py-3 border border-[#141026]',
-    text: 'font-medium text-white',
+    text: 'font-medium ',
     defaultColor: 'bg-[#141026]',
   },
   destructive: {
     base: 'flex items-center rounded px-4 py-3',
-    text: 'font-medium text-white',
+    text: 'font-medium ',
     defaultColor: 'bg-error',
   },
 };

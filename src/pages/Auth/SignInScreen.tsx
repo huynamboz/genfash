@@ -43,13 +43,13 @@ const SignInScreen: React.FC = () => {
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
       <LinearGradient colors={['#1e3a8a', '#3b82f6']} className="absolute inset-0 opacity-50" />
-      <View className="flex-1 justify-center px-6">
-        <Text className="text-4xl font-extrabold text-white text-center mb-10 tracking-tight">
+      <View className="justify-center flex-1 px-6">
+        <Text className="mb-10 text-4xl font-extrabold tracking-tight text-center ">
           Welcome Back
         </Text>
-        <View className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl">
+        <View className="p-6 shadow-xl bg-white/10 backdrop-blur-lg rounded-2xl">
           <TextInput
-            className="bg-gray-800/50 border border-gray-600 rounded-xl p-4 mb-4 text-white placeholder-gray-400"
+            className="p-4 mb-4  placeholder-gray-400 border border-gray-600 bg-gray-800/50 rounded-xl"
             placeholder="Email"
             placeholderTextColor="#9ca3af"
             value={email}
@@ -58,7 +58,7 @@ const SignInScreen: React.FC = () => {
             autoCapitalize="none"
           />
           <TextInput
-            className="bg-gray-800/50 border border-gray-600 rounded-xl p-4 mb-1 text-white placeholder-gray-400"
+            className="p-4 mb-1  placeholder-gray-400 border border-gray-600 bg-gray-800/50 rounded-xl"
             placeholder="Password"
             placeholderTextColor="#9ca3af"
             value={password}
@@ -68,7 +68,7 @@ const SignInScreen: React.FC = () => {
           />
           {/* Error */}
           <Text>
-            {error && <Text className="text-red-500 text-sm font-medium mt-2">{error}</Text>}
+            {error && <Text className="mt-2 text-sm font-medium text-red-500">{error}</Text>}
           </Text>
           <Button
             disabled={loading}
@@ -76,11 +76,11 @@ const SignInScreen: React.FC = () => {
             onPress={() => {
               signInWithEmail();
             }}
-            className="bg-blue-600 rounded-xl py-3 mt-5 text-white font-semibold text-lg"
+            className="py-3 mt-5 text-lg font-semibold  bg-blue-600 rounded-xl"
           />
         </View>
-        <TouchableOpacity className="mt-6 items-center" onPress={() => navigation.goBack()}>
-          <Text className="text-blue-300 text-base font-medium">Back to Home</Text>
+        <TouchableOpacity className="items-center mt-6" onPress={() => navigation.goBack()}>
+          <Text className="text-base font-medium text-blue-300">Back to Home</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -31,7 +31,7 @@ const BoardingScreen = () => {
         </Marquee>
       </View>
 
-      <View className="rotate-3 mt-5">
+      <View className="mt-5 rotate-3">
         <Marquee reverse spacing={20} speed={1}>
           <View className="flex-row gap-4">
             {imageURLs.map((url, index) => (
@@ -43,7 +43,7 @@ const BoardingScreen = () => {
         </Marquee>
       </View>
 
-      <View className="rotate-3 mt-5">
+      <View className="mt-5 rotate-3">
         <Marquee spacing={20} speed={1}>
           <View className="flex-row gap-4">
             {imageURLs.map((url, index) => (
@@ -55,13 +55,13 @@ const BoardingScreen = () => {
         </Marquee>
       </View>
 
-      <View className="absolute w-full bottom-0 pb-10 flex-col items-center">
+      <View className="absolute bottom-0 flex-col items-center w-full pb-10">
         <LinearGradient
           colors={['rgba(1,1,1,0)', '#0c081c']}
           style={styles.linearGradient}
         ></LinearGradient>
         <View className="bg-[#0c081c] w-full flex-col gap-5 items-center justify-center">
-          <Text className="text-white text-center text-3xl">
+          <Text className="text-3xl text-center ">
             Unlock your <Text className="font-bold">Creative Potential </Text>
             with AI
           </Text>
