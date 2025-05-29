@@ -112,27 +112,34 @@ const HomeScreen = () => {
           numColumns={2} // Hiển thị 2 cột
           columnWrapperStyle={{ justifyContent: 'space-between' }} // Căn đều khoảng cách giữa các cột
           renderItem={({ item }) => (
-            <ImageBackground
-              source={{ uri: item.image }}
-              className="w-[48%] h-[250px] rounded-lg overflow-hidden mb-4"
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('CollectionDetailScreen', { collectionId: item.id })
+              }
+              className="w-[48%]"
             >
-              <LinearGradient
-                colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.8)']}
-                style={{ borderRadius: 8, flex: 1 }}
-              />
-              <View className="absolute top-0 left-0 flex-row items-end justify-end flex-1 p-4 size-full">
-                {/* <Text className="flex-auto " numberOfLines={2}>
+              <ImageBackground
+                source={{ uri: item.image }}
+                className="w-full h-[250px] rounded-lg overflow-hidden mb-4"
+              >
+                <LinearGradient
+                  colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.8)']}
+                  style={{ borderRadius: 8, flex: 1 }}
+                />
+                <View className="absolute top-0 left-0 flex-row items-end justify-end flex-1 p-4 size-full">
+                  {/* <Text className="flex-auto " numberOfLines={2}>
                   {item.description}
                 </Text> */}
-                <TouchableOpacity
-                  onPress={() => {}}
-                  className="mt-2 bg-[#171327] rounded-lg flex-row justify-center items-center px-4 h-8 py-0"
-                >
-                  <SVGIcon name="solar_share_linear" size={16} className="stroke-white" />
-                </TouchableOpacity>
-              </View>
-              {/* <Image source={{ uri: item.image }} className="absolute top-0 left-0 w-full h-full" resizeMode="cover" /> */}
-            </ImageBackground>
+                  <TouchableOpacity
+                    onPress={() => {}}
+                    className="mt-2 bg-[#171327] rounded-lg flex-row justify-center items-center px-4 h-8 py-0"
+                  >
+                    <SVGIcon name="solar_share_linear" size={16} className="stroke-white" />
+                  </TouchableOpacity>
+                </View>
+                {/* <Image source={{ uri: item.image }} className="absolute top-0 left-0 w-full h-full" resizeMode="cover" /> */}
+              </ImageBackground>
+            </TouchableOpacity>
           )}
           ListHeaderComponent={renderHeader} // Phần header
           showsVerticalScrollIndicator={false}

@@ -1,11 +1,12 @@
 import { Button } from '@/components/atoms/Button';
 import { SVGIcon } from '@/components/atoms/Icon';
 import { FullScreenLoading } from '@/components/atoms/Loading/FullScreenLoading';
+import { Text } from '@/components/atoms/Text';
 import { GenerateImageApi } from '@/services/generate';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, TextInput, TouchableOpacity, View } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -97,7 +98,7 @@ const CreateScreen = () => {
           multiline
           numberOfLines={4}
           onChangeText={setPrompt}
-          className=" bg-transparent"
+          className="text-white bg-transparent"
           placeholder="Describe your fashion style"
           placeholderClassName="text-[#8f36ff]"
           placeholderTextColor="#82709b"

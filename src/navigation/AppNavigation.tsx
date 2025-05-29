@@ -2,6 +2,7 @@ import { PinVerificationScreen } from '@/pages/Auth/PinVerificationScreen';
 import { SignInScreen } from '@/pages/Auth/SignInScreen';
 import { SignUpScreen } from '@/pages/Auth/SignUpScreen';
 import { BoardingScreen } from '@/pages/Boarding/BoardingScreen';
+import { CollectionDetailScreen } from '@/pages/Collection/CollectionDetailScreen';
 import { CollectionScreen } from '@/pages/Collection/CollectionScreen';
 import { CreateScreen } from '@/pages/Create/CreateScreen';
 import { ResultGeneratedScreen } from '@/pages/Create/ResultGeneratedScreen';
@@ -23,6 +24,7 @@ const AppNavigation = () => {
       <Stack.Screen name="ResultGeneratedScreen" component={ResultGeneratedScreen} />
       <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen name="CollectionDetailScreen" component={CollectionDetailScreen} />
 
       {/* Screen modal */}
       <Stack.Group screenOptions={{ presentation: 'modal' }}>

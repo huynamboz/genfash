@@ -15,6 +15,9 @@ export type HomeStackParamList = {
     description?: string;
   };
   CollectionScreen: undefined;
+  CollectionDetailScreen: {
+    collectionId: string;
+  };
   SignInScreen: undefined;
   ProfileScreen: undefined;
   SignUpScreen: undefined;
