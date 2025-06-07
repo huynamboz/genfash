@@ -1,5 +1,5 @@
 import { SVGIcon } from '@/components/atoms/Icon';
-import Text from '@/components/atoms/Text';
+import { Text } from '@/components/atoms/Text';
 import { supabase } from '@/libs/supabase';
 import { useAuthStore } from '@/stores/auth';
 import { HomeNavigationProp } from '@/types/navigation';

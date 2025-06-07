@@ -1,7 +1,7 @@
 import { Button } from '@/components/atoms/Button';
 import { SVGIcon } from '@/components/atoms/Icon';
 import { Loading } from '@/components/atoms/Loading/Loading';
-import Text from '@/components/atoms/Text';
+import { Text } from '@/components/atoms/Text';
 import { addCollectionApi } from '@/services/collections';
 import { GenerateImageApi, GetResultImageApi } from '@/services/generate';
 import { HomeNavigationProp } from '@/types/navigation';

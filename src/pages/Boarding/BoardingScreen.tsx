@@ -1,5 +1,5 @@
 import { Button } from '@/components/atoms/Button';
-import Text from '@/components/atoms/Text';
+import { Text } from '@/components/atoms/Text';
 import { HomeNavigationProp } from '@/types/navigation';
 import { Marquee } from '@animatereactnative/marquee';
 import { useNavigation } from '@react-navigation/native';

@@ -1,6 +1,6 @@
 import { BottomTab } from '@/components/atoms/BottomTab';
 import { SVGIcon } from '@/components/atoms/Icon';
-import Text from '@/components/atoms/Text';
+import { Text } from '@/components/atoms/Text';
 import { useAuthStore } from '@/stores/auth';
 import { useCollectionStore } from '@/stores/collections';
 import { HomeNavigationProp } from '@/types/navigation';

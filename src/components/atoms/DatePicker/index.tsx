@@ -7,7 +7,7 @@ import DateTimePicker, {
   useDefaultStyles,
 } from 'react-native-ui-datepicker';
 import { SVGIcon } from '../Icon';
-import Text from '../Text';
+import { Text } from '../Text';
 
 interface DatePickerProps {
   value?: DateType;

@@ -1,5 +1,5 @@
 import { SVGIcon } from '@/components/atoms/Icon';
-import Text from '@/components/atoms/Text';
+import { Text } from '@/components/atoms/Text';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';

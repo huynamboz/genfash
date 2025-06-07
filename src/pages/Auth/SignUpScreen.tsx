@@ -1,6 +1,6 @@
 import { SVGIcon } from '@/components/atoms/Icon';
 import { FullScreenLoading } from '@/components/atoms/Loading/FullScreenLoading';
-import Text from '@/components/atoms/Text';
+import { Text } from '@/components/atoms/Text';
 import { supabase } from '@/libs/supabase';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation } from '@react-navigation/native';

@@ -6,7 +6,7 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-import Text from '../Text';
+import { Text } from '../Text';
 
 const styles = StyleSheet.create({
   title: { textAlign: 'center', fontSize: 30 },
