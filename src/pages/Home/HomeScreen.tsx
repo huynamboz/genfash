@@ -1,3 +1,4 @@
+import { Avatar } from '@/components/atoms/Avatar';
 import { BottomTab } from '@/components/atoms/BottomTab';
 import { SVGIcon } from '@/components/atoms/Icon';
 import { Text } from '@/components/atoms/Text';
@@ -14,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Bars3BottomLeftIcon, ShareIcon } from 'react-native-heroicons/outline';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -51,15 +53,15 @@ const HomeScreen = () => {
       <View className="flex-row items-center justify-center gap-1 px-4 py-2">
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="absolute -left-3 top-0 size-12 flex-row justify-center items-center bg-[#171327"
+          className="absolute top-0 flex-row items-center justify-center -left-3 size-12"
         >
-          <SVGIcon name="solar_list_linear" className="stroke-white" />
+          <Bars3BottomLeftIcon size={20} color="#374151" />
         </TouchableOpacity>
-        <SVGIcon name="solar_magic_stick_3_bold" className="fill-white" />
+        <SVGIcon name="solar_magic_stick_3_bold" className="fill-black" />
         <Text className="text-xl font-semibold ">GENFASH</Text>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="absolute -right-0 top-2 py-2 px-3 rounded-full flex-row gap-1 bg-gray-900 justify-center items-center bg-[#171327"
+          className="absolute -right-0 top-2 py-2 px-3 rounded-full flex-row gap-1 bg-gray-200 justify-center items-center bg-[#171327"
         >
           <Text>50</Text>
           <Text className="-mt-2">👑</Text>
@@ -79,7 +81,7 @@ const HomeScreen = () => {
         />
         <View className="absolute top-0 left-0 flex-row items-center justify-center w-full h-full gap-1">
           <SVGIcon name="solar_magic_stick_3_bold" className="fill-white" />
-          <Text className="text-lg font-medium ">Generate fashion style</Text>
+          <Text className="text-lg font-medium text-white">Generate fashion style</Text>
         </View>
       </TouchableOpacity>
 
@@ -92,9 +94,13 @@ const HomeScreen = () => {
           <TouchableOpacity
             onPress={() => setCurrentTab(item)}
             key={index}
-            className={`bg-[#0c081c] h-[40px] rounded-full px-4 flex-row items-center ${currentTab === item ? 'bg-[#8634f9]' : ''}`}
+            className={`h-[40px] rounded-full px-4 flex-row items-center ${currentTab === item ? 'bg-[#8634f9]' : ''}`}
           >
-            <Text className="text-lg font-medium ">{item}</Text>
+            <Text
+              className={`text-lg font-medium ${currentTab === item ? 'text-white' : 'text-black'}`}
+            >
+              {item}
+            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -127,17 +133,17 @@ const HomeScreen = () => {
                   style={{ borderRadius: 8, flex: 1 }}
                 />
                 <View className="absolute top-0 left-0 flex-row items-end justify-end flex-1 p-4 size-full">
-                  {/* <Text className="flex-auto " numberOfLines={2}>
-                  {item.description}
-                </Text> */}
                   <TouchableOpacity
                     onPress={() => {}}
-                    className="mt-2 bg-[#171327] rounded-lg flex-row justify-center items-center px-4 h-8 py-0"
+                    className="absolute flex-row items-center justify-center bg-gray-200 rounded-lg top-2 size-8 right-2"
                   >
-                    <SVGIcon name="solar_share_linear" size={16} className="stroke-white" />
+                    <ShareIcon size={16} color="#374151" />
                   </TouchableOpacity>
+                  <View className="flex-row items-center w-full gap-2">
+                    <Avatar url={item.publisher.avatar} />
+                    <Text className="text-white">{item.publisher.name}</Text>
+                  </View>
                 </View>
-                {/* <Image source={{ uri: item.image }} className="absolute top-0 left-0 w-full h-full" resizeMode="cover" /> */}
               </ImageBackground>
             </TouchableOpacity>
           )}

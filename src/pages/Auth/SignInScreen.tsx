@@ -1,5 +1,6 @@
 import { SVGIcon } from '@/components/atoms/Icon';
 import { Text } from '@/components/atoms/Text';
+import { supabase } from '@/libs/supabase';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
@@ -27,14 +28,19 @@ const SignInScreen = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSignIn = async () => {
-    setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log('Sign in with:', { email, password });
-    }, 2000);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    console.log('Sign in successful', data);
+    if (error) {
+      console.error('Error signing in:', error.message);
+      setError(error.message);
+    }
+    setIsLoading(false);
   };
 
   const handleSocialLogin = (provider: string) => {
@@ -116,6 +122,8 @@ const SignInScreen = () => {
                 </TouchableOpacity>
               </View>
             </View>
+
+            {error && <Text className="text-red-500">{error}</Text>}
 
             {/* Remember Me & Forgot Password */}
             <View className="flex-row items-center justify-end mb-8">

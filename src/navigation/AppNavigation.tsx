@@ -15,9 +15,7 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false, contentStyle: { backgroundColor: '#0c081c' } }}
-    >
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="BoardingScreen" component={BoardingScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="CreateScreen" component={CreateScreen} />

@@ -1,5 +1,4 @@
 import { Button } from '@/components/atoms/Button';
-import { SVGIcon } from '@/components/atoms/Icon';
 import { FullScreenLoading } from '@/components/atoms/Loading/FullScreenLoading';
 import { Text } from '@/components/atoms/Text';
 import { GenerateImageApi } from '@/services/generate';
@@ -8,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, TextInput, TouchableOpacity, View } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
+import { ChevronLeftIcon } from 'react-native-heroicons/outline';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CreateScreen = () => {
@@ -80,9 +80,9 @@ const CreateScreen = () => {
       <View className="flex-row items-center justify-center gap-1 py-2">
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="absolute -left-2 top-0 size-12 flex-row justify-center items-center bg-[#171327"
+          className="absolute top-0 flex-row items-center justify-center -left-2 size-12"
         >
-          <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
+          <ChevronLeftIcon size={20} color="black" />
         </TouchableOpacity>
         <Text className="text-xl font-medium ">Prompt</Text>
       </View>
@@ -92,7 +92,7 @@ const CreateScreen = () => {
         Describe your <Text className="font-bold">fashion style</Text>
       </Text>
 
-      <View className="mt-2 p-3 border-[#8f36ff] border bg-[#1d0839] rounded-3xl">
+      <View className="mt-2 p-3 border-[#8f36ff] border bg-white rounded-3xl">
         <TextInput
           value={prompt}
           multiline
@@ -109,6 +109,7 @@ const CreateScreen = () => {
           onPress={() => {}}
           className="rounded-full mt-5 self-start !py-2 !bg-transparent border border-primary"
           iconLeftName="solar_magic_stick_3_bold"
+          iconClassName="fill-black"
           classNameText="text-xs"
           text="Inspire me"
         />
@@ -124,9 +125,13 @@ const CreateScreen = () => {
             className="flex-col items-center flex-1 gap-2"
           >
             <View
-              className={`w-full h-[120px] bg-[#141026] border-[2px] flex-row justify-center items-center rounded-xl ${selectedStyle === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
+              className={`w-full h-[120px] bg-white border-[2px] flex-row overflow-hidden justify-center items-center rounded-xl ${selectedStyle === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
             >
-              <Image source={{ uri: item.url }} className="w-full h-full rounded-xl" />
+              <Image
+                source={{ uri: item.url }}
+                className="w-full h-full rounded-lg"
+                resizeMode="cover"
+              />
             </View>
             <Text className="text-xs font-medium ">{item.name}</Text>
           </TouchableOpacity>
@@ -143,10 +148,10 @@ const CreateScreen = () => {
             className="flex-col items-center flex-1 gap-2"
           >
             <View
-              className={`w-full h-[80px] bg-[#141026] border flex-row justify-center items-center rounded-xl ${selectedShape === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
+              className={`w-full h-[80px] bg-white border flex-row justify-center items-center rounded-xl ${selectedShape === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
             >
               <View
-                className={`${item.className} ${item.name === selectedShape ? '!border-white' : ''}`}
+                className={`${item.className} ${item.name === selectedShape ? '!border-black' : ''}`}
               ></View>
             </View>
             <Text className="text-xs font-medium ">{item.name}</Text>
@@ -155,7 +160,7 @@ const CreateScreen = () => {
       </View>
 
       {/* Share your generated style */}
-      <View className="flex-row items-center justify-between mt-5 bg-[#141026] px-4 py-3 rounded-xl">
+      <View className="flex-row items-center justify-between px-4 py-3 mt-5 bg-white rounded-xl">
         <Text className="text-xs ">Share your result!</Text>
         <Switch
           onValueChange={(value) => {
@@ -169,6 +174,7 @@ const CreateScreen = () => {
         className="mt-8 rounded-full"
         iconLeftName="solar_magic_stick_3_bold"
         text="Generate fashion style"
+        classNameText="text-white"
       />
       <View>
         <Text className="mt-2 text-xs text-center ">

@@ -5,6 +5,7 @@ import { Collection } from '@/types/collection';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { ChevronLeftIcon } from 'react-native-heroicons/outline';
 import LinearGradient from 'react-native-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -69,7 +70,7 @@ const CollectionScreen = () => {
           onPress={() => navigation.goBack()}
           className="absolute -left-2 top-0 size-12 flex-row justify-center items-center bg-[#171327"
         >
-          <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
+          <ChevronLeftIcon size={20} color="#374151" />
         </TouchableOpacity>
         <Text className="text-xl font-medium ">My Collection</Text>
       </View>

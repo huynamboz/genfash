@@ -1,4 +1,4 @@
-import { User } from '@supabase/supabase-js';
+import { User } from './auth/user';
 
 export interface Collection {
   id: string;

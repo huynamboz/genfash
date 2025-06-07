@@ -81,17 +81,17 @@ const CollectionDetailScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-900">
-      <StatusBar barStyle="light-content" backgroundColor="#0f172a" />
+    <SafeAreaView className="flex-1 bg-white">
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <View className="absolute left-0 right-0 z-10 flex-row items-center justify-between px-6 top-12">
-          <TouchableOpacity className="items-center justify-center w-10 h-10 rounded-full bg-black/50 backdrop-blur">
-            <ChevronLeftIcon size={20} color="white" />
+          <TouchableOpacity className="items-center justify-center w-10 h-10 rounded-full shadow-sm bg-white/90 backdrop-blur">
+            <ChevronLeftIcon size={20} color="#374151" />
           </TouchableOpacity>
-          <TouchableOpacity className="items-center justify-center w-10 h-10 rounded-full bg-black/50 backdrop-blur">
-            <EllipsisHorizontalIcon size={20} color="white" />
+          <TouchableOpacity className="items-center justify-center w-10 h-10 rounded-full shadow-sm bg-white/90 backdrop-blur">
+            <EllipsisHorizontalIcon size={20} color="#374151" />
           </TouchableOpacity>
         </View>
 
@@ -99,78 +99,78 @@ const CollectionDetailScreen = () => {
         <View className="relative">
           <Image source={{ uri: post.image }} className="w-full h-80" resizeMode="cover" />
           <LinearGradient
-            colors={['transparent', 'rgba(15, 23, 42, 0.8)']}
+            colors={['transparent', 'rgba(255, 255, 255, 0.1)']}
             className="absolute bottom-0 left-0 right-0 h-20"
           />
         </View>
 
         {/* Content */}
-        <View className="px-6 py-6">
+        <View className="px-6 py-6 bg-white">
           {/* User Info */}
           <View className="flex-row items-center mb-6">
             <Image source={{ uri: post.user.avatar }} className="w-12 h-12 rounded-full" />
             <View className="flex-1 ml-3">
               <View className="flex-row items-center">
-                <Text className="text-base font-semibold text-white">{post.user.name}</Text>
+                <Text className="text-base font-semibold text-gray-900">{post.user.name}</Text>
               </View>
-              <Text className="text-sm text-gray-400">
+              <Text className="text-sm text-gray-600">
                 {post.user.username} • {post.user.followers} followers
               </Text>
             </View>
-            <TouchableOpacity className="px-6 py-2 bg-blue-600 rounded-full">
+            <TouchableOpacity className="px-6 py-2 bg-blue-600 rounded-full shadow-sm">
               <Text className="text-sm font-medium text-white">Follow</Text>
             </TouchableOpacity>
           </View>
 
           {/* Post Title */}
-          <Text className="mb-3 text-xl font-bold text-white">{post.title}</Text>
+          <Text className="mb-3 text-xl font-bold text-gray-900">{post.title}</Text>
 
           {/* Stats Row */}
           <View className="flex-row items-center gap-6 mb-4">
             <View className="flex-row items-center">
-              <EyeIcon size={16} color="#9ca3af" />
-              <Text className="ml-1 text-sm text-gray-400">
+              <EyeIcon size={16} color="#6b7280" />
+              <Text className="ml-1 text-sm text-gray-600">
                 {formatNumber(post.stats.views)} views
               </Text>
             </View>
             <View className="flex-row items-center">
-              <CalendarIcon size={16} color="#9ca3af" />
-              <Text className="ml-1 text-sm text-gray-400">Jan 15, 2024</Text>
+              <CalendarIcon size={16} color="#6b7280" />
+              <Text className="ml-1 text-sm text-gray-600">Jan 15, 2024</Text>
             </View>
           </View>
 
           {/* Action Buttons */}
-          <View className="flex-row items-center justify-between py-4 mb-6 border-y border-slate-700">
+          <View className="flex-row items-center justify-between py-4 mb-6 border-gray-200 border-y">
             <TouchableOpacity onPress={handleLike} className="flex-row items-center">
               {isLiked ? (
                 <HeartSolidIcon size={24} color="#ef4444" />
               ) : (
-                <HeartIcon size={24} color="#9ca3af" />
+                <HeartIcon size={24} color="#6b7280" />
               )}
-              <Text className={`ml-2 text-sm ${isLiked ? 'text-red-400' : 'text-gray-400'}`}>
+              <Text className={`ml-2 text-sm ${isLiked ? 'text-red-500' : 'text-gray-600'}`}>
                 {formatNumber(post.stats.likes + (isLiked ? 1 : 0))}
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleComment} className="flex-row items-center">
-              <ChatBubbleOvalLeftIcon size={24} color="#9ca3af" />
-              <Text className="ml-2 text-sm text-gray-400">
+              <ChatBubbleOvalLeftIcon size={24} color="#6b7280" />
+              <Text className="ml-2 text-sm text-gray-600">
                 {formatNumber(post.stats.comments)}
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleShare} className="flex-row items-center">
-              <ShareIcon size={24} color="#9ca3af" />
-              <Text className="ml-2 text-sm text-gray-400">Share</Text>
+              <ShareIcon size={24} color="#6b7280" />
+              <Text className="ml-2 text-sm text-gray-600">Share</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={handleSave} className="flex-row items-center">
               {isSaved ? (
                 <BookmarkSolidIcon size={24} color="#3b82f6" />
               ) : (
-                <BookmarkIcon size={24} color="#9ca3af" />
+                <BookmarkIcon size={24} color="#6b7280" />
               )}
-              <Text className={`ml-2 text-sm ${isSaved ? 'text-blue-400' : 'text-gray-400'}`}>
+              <Text className={`ml-2 text-sm ${isSaved ? 'text-blue-600' : 'text-gray-600'}`}>
                 {formatNumber(post.stats.saves + (isSaved ? 1 : 0))}
               </Text>
             </TouchableOpacity>
@@ -178,14 +178,14 @@ const CollectionDetailScreen = () => {
 
           {/* Description */}
           <View className="mb-6">
-            <Text className="text-base leading-6 text-gray-300">
+            <Text className="text-base leading-6 text-gray-700">
               {showFullDescription ? post.description : `${post.description.substring(0, 150)}...`}
             </Text>
             <TouchableOpacity
               onPress={() => setShowFullDescription(!showFullDescription)}
               className="mt-2"
             >
-              <Text className="text-sm font-medium text-blue-400">
+              <Text className="text-sm font-medium text-blue-600">
                 {showFullDescription ? 'Show less' : 'Read more'}
               </Text>
             </TouchableOpacity>
@@ -194,16 +194,16 @@ const CollectionDetailScreen = () => {
           {/* Tags */}
           <View className="mb-8">
             <View className="flex-row items-center mb-3">
-              <TagIcon size={16} color="#9ca3af" />
-              <Text className="ml-2 text-sm text-gray-400">Tags</Text>
+              <TagIcon size={16} color="#6b7280" />
+              <Text className="ml-2 text-sm text-gray-600">Tags</Text>
             </View>
             <View className="flex-row flex-wrap">
               {post.tags.map((tag, index) => (
                 <TouchableOpacity
                   key={index}
-                  className="bg-slate-800 border border-slate-600 px-3 py-1.5 rounded-full mr-2 mb-2"
+                  className="bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-full mr-2 mb-2"
                 >
-                  <Text className="text-sm text-blue-400">#{tag}</Text>
+                  <Text className="text-sm text-blue-600">#{tag}</Text>
                 </TouchableOpacity>
               ))}
             </View>
@@ -211,7 +211,7 @@ const CollectionDetailScreen = () => {
 
           {/* Related Section */}
           <View>
-            <Text className="mb-4 text-lg font-semibold text-white">
+            <Text className="mb-4 text-lg font-semibold text-gray-900">
               More from {post.user.name}
             </Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -221,12 +221,12 @@ const CollectionDetailScreen = () => {
                     source={{
                       uri: `https://images.unsplash.com/photo-155165097${item}-87deedd944c3?w=200&h=150&fit=crop`,
                     }}
-                    className="w-40 h-28 rounded-xl"
+                    className="w-40 shadow-sm h-28 rounded-xl"
                   />
-                  <Text className="mt-2 text-sm font-medium text-white" numberOfLines={2}>
+                  <Text className="mt-2 text-sm font-medium text-gray-900" numberOfLines={2}>
                     Another Amazing Project #{item}
                   </Text>
-                  <Text className="mt-1 text-xs text-gray-400">
+                  <Text className="mt-1 text-xs text-gray-500">
                     {formatNumber(Math.floor(Math.random() * 5000))} views
                   </Text>
                 </TouchableOpacity>

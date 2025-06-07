@@ -50,7 +50,7 @@ const PinInput = ({ cellCount = 6, onFinish }: PinInputProps) => {
             isFocused ? 'border border-primary-8-alpha' : 'border-transparent'
           }`}
         >
-          <Text className="text-xl">{symbol || (isFocused ? <Cursor /> : null)}</Text>
+          <Text className="text-xl text-white">{symbol || (isFocused ? <Cursor /> : null)}</Text>
         </View>
       )}
     />
