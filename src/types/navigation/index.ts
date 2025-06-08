@@ -20,6 +20,7 @@ export type HomeStackParamList = {
   };
   SignInScreen: undefined;
   ProfileScreen: undefined;
+  UpdateProfileScreen: undefined;
   SignUpScreen: undefined;
   PinVerificationScreen: {
     email: string;

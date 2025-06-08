@@ -5,6 +5,7 @@ import { Text } from '@/components/atoms/Text';
 import { useAuthStore } from '@/stores/auth';
 import { useCollectionStore } from '@/stores/collections';
 import { HomeNavigationProp } from '@/types/navigation';
+import { timeAgo } from '@/utils/time';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useMemo } from 'react';
 import {
@@ -25,6 +26,13 @@ const HomeScreen = () => {
   const [currentTab, setCurrentTab] = React.useState('All');
   const { fetchCollections, collections } = useCollectionStore();
   const { session } = useAuthStore();
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchCollections();
+    setRefreshing(false);
+  };
 
   useEffect(() => {
     fetchCollections();
@@ -141,7 +149,10 @@ const HomeScreen = () => {
                   </TouchableOpacity>
                   <View className="flex-row items-center w-full gap-2">
                     <Avatar url={item.publisher.avatar} />
-                    <Text className="text-white">{item.publisher.name}</Text>
+                    <View>
+                      <Text className="text-white">{item.publisher.name}</Text>
+                      <Text className="text-white">{timeAgo(item.created_at)}</Text>
+                    </View>
                   </View>
                 </View>
               </ImageBackground>
@@ -150,6 +161,8 @@ const HomeScreen = () => {
           ListHeaderComponent={renderHeader} // Phần header
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 20 }}
+          refreshing={refreshing}
+          onRefresh={onRefresh}
         />
       </SafeAreaView>
     </View>

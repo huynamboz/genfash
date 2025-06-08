@@ -31,6 +31,11 @@ const SignInScreen = () => {
   const [error, setError] = useState('');
 
   const handleSignIn = async () => {
+    if (!email || !password) {
+      setError('Please enter your email and password');
+      return;
+    }
+    setIsLoading(true);
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -39,6 +44,11 @@ const SignInScreen = () => {
     if (error) {
       console.error('Error signing in:', error.message);
       setError(error.message);
+    } else {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'HomeScreen' }],
+      });
     }
     setIsLoading(false);
   };

@@ -18,7 +18,7 @@ const BoardingScreen = () => {
   ];
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView edges={['top']} className="flex-1 bg-white">
       <View className="rotate-3">
         <Marquee spacing={20} speed={1}>
           <View className="flex-row gap-4">

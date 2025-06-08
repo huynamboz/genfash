@@ -6,7 +6,7 @@ import { create } from 'zustand';
 interface AuthState {
   session: Session | null;
   user: User | null;
-  setUser: (user: User | null) => void;
+  setUser: (user: Partial<User>) => void;
   setSession: (session: Session | null) => void;
   logOut: () => void;
 }
@@ -14,7 +14,10 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => ({
   session: null,
   user: null,
-  setUser: (user: User | null) => set({ user }),
+  setUser: (value: Partial<User>) => {
+    const { user } = useAuthStore.getState();
+    set({ user: { ...user, ...value } as User });
+  },
   setSession: (session: Session | null) => set({ session }),
   logOut: () => {
     set({ session: null, user: null });

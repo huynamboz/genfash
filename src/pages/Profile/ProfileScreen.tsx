@@ -11,8 +11,9 @@ import {
   ArrowRightOnRectangleIcon,
   BellIcon,
   ChevronLeftIcon,
-  CurrencyDollarIcon,
   InformationCircleIcon,
+  Cog6ToothIcon,
+  UserIcon,
 } from 'react-native-heroicons/outline';
 
 const ProfileScreen = () => {
@@ -20,10 +21,10 @@ const ProfileScreen = () => {
   const navigation = useNavigation<HomeNavigationProp>();
   const menuItems = [
     {
-      id: 2,
-      title: 'Payment History',
-      icon: CurrencyDollarIcon,
-      onPress: () => console.log('Payment History pressed'),
+      id: 1,
+      title: 'Update Profile',
+      icon: UserIcon,
+      onPress: () => navigation.navigate('UpdateProfileScreen'),
     },
     {
       id: 3,
@@ -67,13 +68,16 @@ const ProfileScreen = () => {
         <TouchableOpacity className="p-2 -ml-2" onPress={() => navigation.goBack()}>
           <ChevronLeftIcon size={24} color="black" />
         </TouchableOpacity>
-        <Text className="ml-4 text-lg font-semibold text-black">Profile</Text>
+        <View className="flex-row items-center ml-4 text-lg font-semibold text-black">
+          <Text className="mr-2 text-lg font-semibold">Settings</Text>
+          <Cog6ToothIcon size={24} color="black" />
+        </View>
       </View>
 
       {/* Profile Section */}
       <View className="items-center py-8">
         <View className="relative">
-          <Avatar url={user?.avatar} className="size-24" />
+          <Avatar url={user?.avatar} className="!size-24" />
           {/* Online indicator */}
           <View className="absolute w-6 h-6 bg-green-500 border-2 rounded-full bottom-1 right-1 border-slate-900" />
         </View>

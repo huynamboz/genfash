@@ -84,7 +84,7 @@ const CreateScreen = () => {
         >
           <ChevronLeftIcon size={20} color="black" />
         </TouchableOpacity>
-        <Text className="text-xl font-medium ">Prompt</Text>
+        <Text className="text-xl font-medium ">Generate</Text>
       </View>
 
       {/* Content */}
@@ -92,7 +92,7 @@ const CreateScreen = () => {
         Describe your <Text className="font-bold">fashion style</Text>
       </Text>
 
-      <View className="mt-2 p-3 border-[#8f36ff] border bg-white rounded-3xl">
+      <View className="mt-2 p-3 border-[#8f36ff] border bg-gray-100 rounded-3xl">
         <TextInput
           value={prompt}
           multiline
@@ -107,10 +107,10 @@ const CreateScreen = () => {
         <Button
           variant="primary"
           onPress={() => {}}
-          className="rounded-full mt-5 self-start !py-2 !bg-transparent border border-primary"
+          className="rounded-full mt-5 self-start !py-2 border border-primary"
           iconLeftName="solar_magic_stick_3_bold"
-          iconClassName="fill-black"
-          classNameText="text-xs"
+          iconClassName="fill-black stroke-black"
+          classNameText="text-xs text-white"
           text="Inspire me"
         />
       </View>
@@ -125,7 +125,7 @@ const CreateScreen = () => {
             className="flex-col items-center flex-1 gap-2"
           >
             <View
-              className={`w-full h-[120px] bg-white border-[2px] flex-row overflow-hidden justify-center items-center rounded-xl ${selectedStyle === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
+              className={`w-full h-[120px] bg-gray-100 border-[2px] flex-row overflow-hidden justify-center items-center rounded-xl ${selectedStyle === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
             >
               <Image
                 source={{ uri: item.url }}
@@ -148,7 +148,7 @@ const CreateScreen = () => {
             className="flex-col items-center flex-1 gap-2"
           >
             <View
-              className={`w-full h-[80px] bg-white border flex-row justify-center items-center rounded-xl ${selectedShape === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
+              className={`w-full h-[80px] bg-gray-100 border flex-row justify-center items-center rounded-xl ${selectedShape === item.name ? 'border-[#8f36ff]' : 'border-transparent'}`}
             >
               <View
                 className={`${item.className} ${item.name === selectedShape ? '!border-black' : ''}`}
@@ -160,7 +160,7 @@ const CreateScreen = () => {
       </View>
 
       {/* Share your generated style */}
-      <View className="flex-row items-center justify-between px-4 py-3 mt-5 bg-white rounded-xl">
+      <View className="flex-row items-center justify-between px-4 py-3 mt-5 bg-gray-100 rounded-xl">
         <Text className="text-xs ">Share your result!</Text>
         <Switch
           onValueChange={(value) => {

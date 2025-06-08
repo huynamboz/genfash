@@ -27,13 +27,14 @@ export const getMyCollectionsApi = async (): Promise<Collection[]> => {
     const { data, error } = await supabase
       .from('collections')
       .select('id, name, is_public, image,shape,style,description, created_at, publisher:users(*)')
-      .eq('publisher.id', user?.id)
+      .eq('publisher_id', user?.id)
       .order('created_at', { ascending: false });
 
     if (error) {
       throw new Error(`Error fetching collections: ${error.message}`);
     }
 
+    console.log('data', data);
     return (data as any as Collection[]) ?? [];
   } catch (error) {
     console.error('Error fetching collections:', error);

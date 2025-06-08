@@ -8,6 +8,7 @@ import { CreateScreen } from '@/pages/Create/CreateScreen';
 import { ResultGeneratedScreen } from '@/pages/Create/ResultGeneratedScreen';
 import { HomeScreen } from '@/pages/Home/HomeScreen';
 import { ProfileScreen } from '@/pages/Profile/ProfileScreen';
+import { UpdateProfileScreen } from '@/pages/Profile/UpdateProfileScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
@@ -15,13 +16,16 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigation = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'white' } }}
+    >
       <Stack.Screen name="BoardingScreen" component={BoardingScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="CreateScreen" component={CreateScreen} />
       <Stack.Screen name="ResultGeneratedScreen" component={ResultGeneratedScreen} />
       <Stack.Screen name="CollectionScreen" component={CollectionScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen name="UpdateProfileScreen" component={UpdateProfileScreen} />
       <Stack.Screen name="CollectionDetailScreen" component={CollectionDetailScreen} />
 
       {/* Screen modal */}
