@@ -1,21 +1,25 @@
 import { Button } from '@/components/atoms/Button';
 import { FullScreenLoading } from '@/components/atoms/Loading/FullScreenLoading';
+import { FashionPromptsModal } from '@/components/atoms/Modal/FashionPromptsModal';
 import { Text } from '@/components/atoms/Text';
 import { GenerateImageApi } from '@/services/generate';
 import { HomeNavigationProp } from '@/types/navigation';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Image, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, TextInput, TouchableOpacity, View } from 'react-native';
 import { Switch } from 'react-native-gesture-handler';
 import { ChevronLeftIcon } from 'react-native-heroicons/outline';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CreateScreen = () => {
   const navigation = useNavigation<HomeNavigationProp>();
-  const [prompt, setPrompt] = React.useState('');
+  const { prompt: promptParam } = (useRoute().params || {}) as { prompt: string };
+  const [prompt, setPrompt] = React.useState(promptParam || '');
   const [selectedStyle, setSelectedStyle] = React.useState('90s');
   const [selectedShape, setSelectedShape] = React.useState('Square');
   const [isShareResult, setIsShareResult] = React.useState(true);
+  const [name, setName] = React.useState('');
+  const [showPromptsModal, setShowPromptsModal] = React.useState(false);
   const shape = [
     {
       name: 'Square',
@@ -54,15 +58,23 @@ const CreateScreen = () => {
   async function handleGenerate() {
     setIsLoading(true);
     try {
-      const { job_id } = await GenerateImageApi(
-        prompt + ' ' + selectedStyle || 'a street wear fashion style',
-      );
-      console.log('job_id', job_id);
+      const { collection_id, error } = await GenerateImageApi({
+        prompt: prompt,
+        selectedStyle,
+        name: name || 'My Collection',
+        isPublic: isShareResult,
+      });
+      console.log('collection_id', collection_id);
+      if (error) {
+        Alert.alert('Error', error);
+        return;
+      }
       navigation.navigate('ResultGeneratedScreen', {
-        job_id,
+        collection_id: '1233',
         isPublic: isShareResult,
         style: selectedStyle,
-        description: prompt,
+        description: prompt || 'a street wear fashion style',
+        name: name || 'My Collection',
       });
     } catch (error) {
       console.log('error', error);
@@ -87,6 +99,17 @@ const CreateScreen = () => {
         <Text className="text-xl font-medium ">Generate</Text>
       </View>
 
+      {/* name */}
+      <Text className="mb-2 text-sm font-medium">Name your collection</Text>
+      <TextInput
+        value={name}
+        onChangeText={setName}
+        className="p-2 text-black bg-gray-100 border border-transparent rounded-lg focus:border-primary"
+        placeholder="Name your collection"
+        placeholderClassName="text-[#8f36ff]"
+        placeholderTextColor="#82709b"
+      />
+
       {/* Content */}
       <Text className=" mt-5 max-w-[80%]">
         Describe your <Text className="font-bold">fashion style</Text>
@@ -98,7 +121,7 @@ const CreateScreen = () => {
           multiline
           numberOfLines={4}
           onChangeText={setPrompt}
-          className="text-white bg-transparent"
+          className="text-black bg-transparent"
           placeholder="Describe your fashion style"
           placeholderClassName="text-[#8f36ff]"
           placeholderTextColor="#82709b"
@@ -106,7 +129,7 @@ const CreateScreen = () => {
 
         <Button
           variant="primary"
-          onPress={() => {}}
+          onPress={() => setShowPromptsModal(true)}
           className="rounded-full mt-5 self-start !py-2 border border-primary"
           iconLeftName="solar_magic_stick_3_bold"
           iconClassName="fill-black stroke-black"
@@ -160,7 +183,7 @@ const CreateScreen = () => {
       </View>
 
       {/* Share your generated style */}
-      <View className="flex-row items-center justify-between px-4 py-3 mt-5 bg-gray-100 rounded-xl">
+      <View className="flex-row items-center justify-between px-4 py-3 mt-5 mt-auto bg-gray-100 rounded-xl">
         <Text className="text-xs ">Share your result!</Text>
         <Switch
           onValueChange={(value) => {
@@ -178,9 +201,15 @@ const CreateScreen = () => {
       />
       <View>
         <Text className="mt-2 text-xs text-center ">
-          Use 1 of 50 credit <Text className="text-[#8f36ff]">Terms of Service</Text>
+          <Text className="text-[#8f36ff]">Terms of Service</Text>
         </Text>
       </View>
+
+      <FashionPromptsModal
+        visible={showPromptsModal}
+        onClose={() => setShowPromptsModal(false)}
+        onSelectPrompt={(selectedPrompt) => setPrompt(selectedPrompt)}
+      />
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 # 📸 Genfash
-
+ <img src="docs/i7.jpg" alt="Preview" title="Mobile Preview">
 Transform your fashion ideas into stunning visuals with **Genfash**, an AI-powered app that generates unique, high-quality fashion images tailored to your style!
 
 ## ✨ Features
@@ -13,18 +13,24 @@ Transform your fashion ideas into stunning visuals with **Genfash**, an AI-power
 <table align="center">
   <tr>
     <td align="center" width="25%">
-      <img src="docs/image4.png" alt="Preview" title="Desktop Preview">
+      <img src="docs/i1.png" alt="Preview" title="Desktop Preview">
     </td>
     <td align="center" width="25%">
-      <img src="docs/image3.png" alt="Preview" title="Mobile Preview">
+      <img src="docs/i2.png" alt="Preview" title="Desktop Preview">
+    </td>
+    <td align="center" width="25%">
+      <img src="docs/i3.png" alt="Preview" title="Mobile Preview">
     </td>
   </tr>
   <tr>
     <td align="center" width="25%">
-      <img src="docs/image2.png" alt="Preview" title="Desktop Preview">
+      <img src="docs/i4.png" alt="Preview" title="Desktop Preview">
     </td>
     <td align="center" width="25%">
-      <img src="docs/image.png" alt="Preview" title="Mobile Preview">
+      <img src="docs/i5.png" alt="Preview" title="Mobile Preview">
+    </td>
+     <td align="center" width="25%">
+      <img src="docs/i6.png" alt="Preview" title="Mobile Preview">
     </td>
   </tr>
 </table>

@@ -60,20 +60,20 @@ const HomeScreen = () => {
       {/* Header */}
       <View className="flex-row items-center justify-center gap-1 px-4 py-2">
         <TouchableOpacity
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('ProfileScreen')}
           className="absolute top-0 flex-row items-center justify-center -left-3 size-12"
         >
           <Bars3BottomLeftIcon size={20} color="#374151" />
         </TouchableOpacity>
         <SVGIcon name="solar_magic_stick_3_bold" className="fill-black" />
         <Text className="text-xl font-semibold ">GENFASH</Text>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.goBack()}
           className="absolute -right-0 top-2 py-2 px-3 rounded-full flex-row gap-1 bg-gray-200 justify-center items-center bg-[#171327"
         >
           <Text>50</Text>
           <Text className="-mt-2">👑</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       {/* Content */}
@@ -128,12 +128,12 @@ const HomeScreen = () => {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate('CollectionDetailScreen', { collectionId: item.id })
+                navigation.navigate('CollectionDetailScreen', { collection_id: item.id })
               }
               className="w-[48%]"
             >
               <ImageBackground
-                source={{ uri: item.image }}
+                source={{ uri: item.main_image_url }}
                 className="w-full h-[250px] rounded-lg overflow-hidden mb-4"
               >
                 <LinearGradient

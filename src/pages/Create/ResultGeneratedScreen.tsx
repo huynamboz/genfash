@@ -1,30 +1,29 @@
 import { Button } from '@/components/atoms/Button';
-import { SVGIcon } from '@/components/atoms/Icon';
 import { Loading } from '@/components/atoms/Loading/Loading';
 import { Text } from '@/components/atoms/Text';
-import { addCollectionApi } from '@/services/collections';
 import { GenerateImageApi, GetResultImageApi } from '@/services/generate';
 import { HomeNavigationProp } from '@/types/navigation';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { Image, ScrollView, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, ScrollView, Share, TouchableOpacity, View } from 'react-native';
+import { ChevronLeftIcon, HomeIcon } from 'react-native-heroicons/outline';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ResultGeneratedScreen = () => {
   const navigation = useNavigation<HomeNavigationProp>();
   const route = useRoute();
-  const { job_id, isPublic, style, description } = (route.params as any) || {};
-  const [jobId, setJobId] = React.useState<string | null>(job_id);
-  console.log('job_id', job_id);
+  const { collection_id, isPublic, style, description, name } = (route.params as any) || {};
+  const [jobId, setJobId] = React.useState<string | null>(collection_id);
+  console.log('collection_id', collection_id);
 
   // fetch image GetResultImageApi, get image_url from api and push to result.urls, stop when image_url is 4 item
   const [imageUrls, setImageUrls] = React.useState<string[]>([]);
   const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  async function fetchImage(job_id: string) {
+  async function fetchImage(collection_id: string) {
     const timeStarted = Date.now();
     intervalRef.current = setInterval(() => {
-      GetResultImageApi(job_id)
+      GetResultImageApi(collection_id)
         .then(async (res) => {
           console.log('res', res);
           if (res?.image_url) {
@@ -55,31 +54,54 @@ const ResultGeneratedScreen = () => {
   }, [jobId]);
 
   useEffect(() => {
-    if (imageUrls.length > 0) {
-      const addCollection = async (url: string) => {
-        try {
-          await addCollectionApi({
-            image: url,
-            description,
-            style: style,
-            is_public: isPublic,
-          });
-        } catch (error) {
-          console.log('Error adding collection:', error);
-        }
-      };
-      imageUrls.forEach((url) => {
-        addCollection(url);
-      });
+    async function saveToDB() {
+      if (imageUrls.length === 4) {
+        console.log('imageUrls', imageUrls);
+        // await updateCollectionApi(collection_id, {
+        //   main_image_url: imageUrls[0],
+        //   description,
+        //   style: style,
+        //   is_public: isPublic,
+        //   name: name || 'My Collection',
+        // });
+        // const addCollection = async (url: string) => {
+        //   try {
+        //     await addCollectionImageApi(collection_id, url);
+        //   } catch (error) {
+        //     console.log('Error adding collection:', error);
+        //   }
+        // };
+        // imageUrls.forEach((url) => {
+        //   addCollection(url);
+        // });
+      }
     }
+    saveToDB();
   }, [imageUrls]);
   async function handleReGenerate() {
-    const { job_id } = await GenerateImageApi('a street wear fashion style');
-    setJobId(job_id);
+    const { collection_id, error } = await GenerateImageApi({
+      prompt: description,
+      selectedStyle: style,
+      name: name || 'My Collection',
+      isPublic: isPublic,
+    });
+    console.log('collection_id', collection_id);
+    if (error) {
+      Alert.alert('Error', error);
+      return;
+    }
+    setJobId(collection_id);
     setImageUrls([]);
   }
 
   const [currentUrlIndex, setCurrentUrlIndex] = React.useState(0);
+
+  const handleShare = () => {
+    Share.share({
+      message: `Check out this collection: ${name}`,
+      url: imageUrls[currentUrlIndex],
+    });
+  };
 
   return (
     <SafeAreaView className="flex-1">
@@ -89,20 +111,20 @@ const ResultGeneratedScreen = () => {
           onPress={() => navigation.goBack()}
           className="absolute left-0 top-0 size-12 flex-row justify-center items-center bg-[#171327"
         >
-          <SVGIcon name="solar_alt_arrow_left_linear" className="stroke-white" />
+          <ChevronLeftIcon size={20} color="black" />
         </TouchableOpacity>
         <Text className="text-xl ">Generate Image</Text>
         <TouchableOpacity
           onPress={() => navigation.navigate('HomeScreen')}
           className="absolute right-0 top-0 size-12 flex-row justify-center items-center bg-[#171327"
         >
-          <SVGIcon name="solar_home_2_outline" size={18} className="fill-white" />
+          <HomeIcon size={18} className="fill-white" />
         </TouchableOpacity>
       </View>
 
       <View className="flex-auto px-4">
         {/* Content */}
-        <View className="flex-auto bg-gray-800 rounded-lg">
+        <View className="flex-auto bg-gray-200 rounded-lg">
           {imageUrls[currentUrlIndex] ? (
             <Image
               source={{ uri: imageUrls[currentUrlIndex] }}
@@ -151,7 +173,7 @@ const ResultGeneratedScreen = () => {
           className="!bg-transparent border-primary border rounded-full mt-5"
           onPress={() => handleReGenerate()}
           iconLeftName="solar_magic_stick_3_bold"
-          iconClassName="fill-primary"
+          iconClassName="stroke-primary"
           classNameText="text-primary"
         />
 
@@ -160,10 +182,10 @@ const ResultGeneratedScreen = () => {
             <Button
               text="Share"
               variant="secondary"
-              className="w-full border border-gray-800 rounded-full"
-              onPress={() => navigation.navigate('CreateScreen')}
+              className="w-full border border-gray-200 rounded-full"
+              onPress={() => handleShare()}
               iconLeftName="solar_share_linear"
-              iconClassName="!stroke-white !fill-transparent"
+              iconClassName="!stroke-[#000]"
             />
           </View>
           <View className="w-1/2">
@@ -174,6 +196,7 @@ const ResultGeneratedScreen = () => {
               onPress={() => navigation.navigate('CreateScreen')}
               iconLeftName="solar_download_minimalistic_linear"
               iconClassName="!stroke-white !fill-transparent"
+              classNameText="text-white"
             />
           </View>
         </View>

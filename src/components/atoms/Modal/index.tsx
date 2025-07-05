@@ -14,10 +14,16 @@ const ModalBase: React.FC<ModalBaseProps> = ({
   onPressOutside,
   ...props
 }) => (
-  <Modal visible={visible} transparent animationType="fade" {...props}>
+  <Modal
+    visible={visible}
+    transparent
+    animationType="fade"
+    onRequestClose={onPressOutside}
+    {...props}
+  >
     <Pressable
       onPress={onPressOutside}
-      className="flex-1 px-4 justify-center items-center bg-black-alpha-6 bg-opacity-50"
+      className="items-center justify-center flex-1 px-4 bg-opacity-50 bg-black-alpha-6"
     >
       <View
         onStartShouldSetResponder={() => true}

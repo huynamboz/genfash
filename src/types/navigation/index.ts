@@ -7,16 +7,21 @@ export type AuthStackParamList = {
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
-  CreateScreen: undefined;
+  CreateScreen:
+    | {
+        prompt: string;
+      }
+    | undefined;
   ResultGeneratedScreen: {
-    job_id: string;
+    collection_id: string;
     isPublic: boolean;
     style: string;
     description?: string;
+    name?: string;
   };
   CollectionScreen: undefined;
   CollectionDetailScreen: {
-    collectionId: string;
+    collection_id: string;
   };
   SignInScreen: undefined;
   ProfileScreen: undefined;

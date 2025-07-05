@@ -32,9 +32,9 @@ const buttonVariants = {
     defaultColor: '',
   },
   secondary: {
-    base: 'flex items-center rounded px-4 py-3 border border-[#141026]',
+    base: 'flex items-center rounded px-4 py-3',
     text: 'font-medium ',
-    defaultColor: 'bg-[#141026]',
+    defaultColor: 'bg-gray-200',
   },
   destructive: {
     base: 'flex items-center rounded px-4 py-3',
